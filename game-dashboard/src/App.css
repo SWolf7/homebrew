@@ -1,26 +1,121 @@
 .App {
-  text-align: center;
+  position: relative;
+  overflow-x: hidden;
 }
 
 .App-header {
   background-color: #656567;
-  min-height: 100vh;
+  height: 5vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: top;
+  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+  padding: 1 1rem;
 }
 
-.App-h1 {
-  background-color: #61dafb;
-  min-height: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.App-body {
+  margin-top: 1vh; /* match App-header height */
+  padding: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+.App-header.show {
+  transform: translateY(0);
+}
+
+.App-header.hide {
+  transform: translateY(-100%);
+}
+
+.App-body {
+  background-color: #ffffff;
+  font-size: 100px;
+}
+
+.button {
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.5rem;
+  padding: 6px 10px;
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.button:active {
+  transform: scale(0.95);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 999;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar .close-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 60px 0 0 0;
+}
+
+.sidebar li {
+  margin: 20px 0;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 10px;
+  border-radius: 5px;
+  user-select: none;
+}
+
+.sidebar li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+  color: #fff;
+}
+
+.sidebar li:active {
+  transform: scale(0.95);
+  background-color: rgba(255, 255, 255, 0.2);
 }
