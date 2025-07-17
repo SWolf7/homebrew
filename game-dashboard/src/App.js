@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, Routes, Route } from "react-router-dom";
+
+import Forum from "./pages/Forum"
+import Home from "./pages/Home"
+import BuildHelp from "./pages/BuildHelp"
+import Inventory from "./pages/Inventory"
+import Map from "./pages/Map"
+
 import "./App.css";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setIsSidebarOpen(true);
@@ -16,14 +26,19 @@ function App() {
     setShowHeader(true);
   };
 
+  const handleNavigate = (path) => {
+    navigate(path);
+    closeSidebar();
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setShowHeader(false); // scrolling down
+        setShowHeader(false);
       } else {
-        setShowHeader(true); // scrolling up
+        setShowHeader(true);
       }
 
       setLastScrollY(currentScrollY);
@@ -36,19 +51,18 @@ function App() {
 
   return (
     <div className="App">
-      {/* Dark Overlay */}
       {isSidebarOpen && <div className="overlay" onClick={closeSidebar}></div>}
 
-      {/* Sidebar */}
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <button className="close-button" onClick={closeSidebar}>
           &times;
         </button>
         <ul>
-          <li>Forum</li>
-          <li>Interactive Map</li>
-          <li>Inventory</li>
-          <li>Build Help</li>
+          <li onClick={() => handleNavigate("/")}>Home</li>
+          <li onClick={() => handleNavigate("/forum")}>Forum</li>
+          <li onClick={() => handleNavigate("/map")}>Interactive Map</li>
+          <li onClick={() => handleNavigate("/inventory")}>Inventory</li>
+          <li onClick={() => handleNavigate("/help")}>Build Help</li>
         </ul>
       </div>
 
@@ -58,8 +72,15 @@ function App() {
           <i className="fas fa-bars"></i>
         </button>
       </header>
+
       <main className="App-body">
-        This is a test of the scrolling capabilities of the application, and I would like to see if the header gets hidden properly and then test the scrolling functionality of the sidebar
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/forum" element={<Forum />} />
+          <Route path="/map" element={<Map />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/help" element={<BuildHelp />} />
+        </Routes>
       </main>
     </div>
   );
