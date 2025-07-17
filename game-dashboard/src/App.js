@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Routes, Route } from "react-router-dom";
 
-import Forum from "./pages/Forum"
+import Forum from "./pages/Forum";
 import Home from "./pages/Home"
 import BuildHelp from "./pages/BuildHelp"
 import Inventory from "./pages/Inventory"
