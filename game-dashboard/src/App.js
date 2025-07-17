@@ -7,7 +7,7 @@ import BuildHelp from "./pages/BuildHelp"
 import Inventory from "./pages/Inventory"
 import Map from "./pages/Map"
 
-import "./App.css"
+import "./App.css";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
