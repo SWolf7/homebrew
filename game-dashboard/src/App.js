@@ -7,6 +7,7 @@ import BuildHelp from "./pages/BuildHelp"
 import Inventory from "./pages/Inventory"
 import Map from "./pages/Map"
 import About from "./pages/About"
+import Login from "./pages/Login"
 
 import "./App.css"
 
@@ -14,6 +15,7 @@ function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -62,6 +64,9 @@ function App() {
           <li onClick={() => handleNavigate("/inventory")}>Inventory</li>
           <li onClick={() => handleNavigate("/help")}>Build Help</li>
         </ul>
+        <button className="button" onClick={() => setShowLoginModal(true)}>
+          Login / Signup
+        </button>
       </div>
 
       <header className={`App-header ${showHeader ? "show" : "hide"}`}>
@@ -89,10 +94,16 @@ function App() {
         <a href="https://discord.gg/4d469Cbck4" target="_blank" rel="noopener noreferrer">
           <i className="fab fa-discord"></i>
         </a>
+        <a href="https://discord.gg/4d469Cbck4" target="_blank" rel="noopener noreferrer">
+          <i className="fab fa-youtube"></i>
+        </a>
         <Link to="/about">
           About Us
         </Link>
       </footer>
+
+      {showLoginModal && <Login onClose={() => setShowLoginModal(false)} />}
+
     </div>
   );
 }
