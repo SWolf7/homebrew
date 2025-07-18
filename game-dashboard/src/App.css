@@ -37,6 +37,25 @@
   font-size: 100px;
 }
 
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #656567;
+  color: #fff;
+  border-top: 1px solid #656567;
+}
+
+.footer a {
+  margin: 0 15px;
+  color: #ccc;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.footer a:hover {
+  color: #fff;
+}
+
 .button {
   background-color: transparent;
   border: 2px solid white;

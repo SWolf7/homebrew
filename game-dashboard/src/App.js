@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Routes, Route } from "react-router-dom";
+import { useNavigate, Routes, Route, Link } from "react-router-dom";
 
 import Forum from "./pages/Forum"
 import Home from "./pages/Home"
 import BuildHelp from "./pages/BuildHelp"
 import Inventory from "./pages/Inventory"
 import Map from "./pages/Map"
+import About from "./pages/About"
 
-import "./App.css";
+import "./App.css"
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -45,7 +46,6 @@ function App() {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
@@ -54,9 +54,7 @@ function App() {
       {isSidebarOpen && <div className="overlay" onClick={closeSidebar}></div>}
 
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
-        <button className="close-button" onClick={closeSidebar}>
-          &times;
-        </button>
+        <button className="close-button" onClick={closeSidebar}>&times;</button>
         <ul>
           <li onClick={() => handleNavigate("/")}>Home</li>
           <li onClick={() => handleNavigate("/forum")}>Forum</li>
@@ -75,13 +73,26 @@ function App() {
 
       <main className="App-body">
         <Routes>
-          <Route path="/" element={<Home />}/>
+          <Route path="/" element={<Home />} />
           <Route path="/forum" element={<Forum />} />
           <Route path="/map" element={<Map />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/help" element={<BuildHelp />} />
+          <Route path="/about" element={<About />}/>
         </Routes>
       </main>
+
+      <footer className="footer">
+        <a href="https://x.com/Wolfy__Studios" target="_blank" rel="noopener noreferrer">
+          <i className="fab fa-x-twitter"></i>
+        </a>
+        <a href="https://discord.gg/4d469Cbck4" target="_blank" rel="noopener noreferrer">
+          <i className="fab fa-discord"></i>
+        </a>
+        <Link to="/about">
+          About Us
+        </Link>
+      </footer>
     </div>
   );
 }
